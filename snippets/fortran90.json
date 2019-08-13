@@ -1,56 +1,105 @@
 {
     "Program Skeleton": {
-        "prefix": "program",
+        "prefix": "PROGRAM",
         "body": [
             "program ${1:name}",
             "implicit none",
             "",
-            "end program ${1:name}"
+            "ENDPROGRAM ${1:name}"
         ],
         "description": "Program Skeleton"
     },
     "Module Skeleton": {
-        "prefix": "module",
+        "prefix": "MODULE",
         "body": [
-            "module ${1:name}",
+            "MODULE ${1:name}",
             "implicit none",
             "${2}",
             "contains",
-            "end module ${1:name}"
+            "ENDMODULE ${1:name}"
         ],
         "description": "Create a new module"
     },
     "Do Loop": {
-        "prefix": "do",
+        "prefix": "DO",
         "body": [
-            "do ${1:index} = ${2:start},${3:end}",
+            "DO ${1:index} = ${2:start},${3:end}",
             "    !TODO_statement",
             "    ${4}",
-            "enddo"
+            "ENDDO"
         ],
         "description": "Create a do loop"
     },
     "Function": {
-        "prefix": "fun",
+        "prefix": "FUNCTION",
         "body": [
-            "function ${1:func}(${2:arg}) result(${3:retval})",
+            "FUNCTION ${1:func}(${2:arg}) RESULT(${3:retval})",
             "${4:type} :: ${2:arg}",
             "${4:type} :: ${3:retval}",
             "    !TODO_add_body",
             "    ${5}",
-            "end function ${1:func}"
+            "ENDFUNCTION ${1:func}"
         ],
         "description": "Create a function"
     },
-    "Subroutine": {
-        "prefix": "sub",
+    "IF": {
+        "prefix": "IF",
         "body": [
-            "subroutine ${1:routine}(${2:arg1}, ${3: arg2})",
+            "IF(${1:condtion}) THEN",
+            "    !TODO_add_body",
+            "    ${2}",
+            "ENDIF "
+        ],
+        "description": "Create a IFTHEN"
+    },
+    "IFELIF": {
+        "prefix": "IFELIF",
+        "body": [
+            "IF(${1:condtion}) THEN",
+            "    !TODO_add_body",
+            "    ${2}",
+            "ELSEIF(${3:condition}) THEN",
+            "    !TODO_add_body",
+            "    ${4}",
+            "ENDIF"
+        ],
+        "description": "Create a IF IFELSEIF"
+    },
+    "IFELSE": {
+        "prefix": "IFELSE",
+        "body": [
+            "IF(${1:condtion}) THEN",
+            "    !TODO_add_body",
+            "    ${2}",
+            "ELSE ",
+            "    !TODO_add_body",
+            "    ${3}",
+            "ENDIF"
+        ],
+        "description": "Create a IFELSE"
+    },
+    "SELECTTYPE":{
+        "prefix": "SELECTTYPE",
+        "body": [
+            "SELETYPE(${1:condtion}) ; TYPE IS(${2:condtion})",
+            "    !TODO_add_body",
+            "    ${3}",
+            "CLASS DEFAULT ",
+            "    !TODO_add_body",
+            "    ${4}",
+            "ENDIF"
+        ],
+        "description": "Create a IFELSE"
+    },
+    "SUBROUTINE": {
+        "prefix": "SUB",
+        "body": [
+            "SUBROUTINE ${1:routine}(${2:arg1}, ${3: arg2})",
             "${4:type1},intent(in)  :: ${2:arg1}",
             "${5:type2},intent(out) :: ${3:arg2}",
             "    !TODO_add_body",
             "    ${6}",
-            "end subroutine ${1:routine}"
+            "ENDSUBROUTINE ${1:routine}"
         ],
         "description": "Create a function"
     },

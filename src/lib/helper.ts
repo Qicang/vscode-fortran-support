@@ -23,6 +23,11 @@ export const FORTRAN_KEYWORDS = [
   'ELIF',
   'END',
   'IMPLICIT',
+  'SELECTYPE',
+  'CLASS IS',
+  'TYPE IS',
+  'ENDDO',
+  'ENDSELECT'
 ];
 
 export const isIntrinsic = keyword => {
