@@ -3,8 +3,8 @@
         "prefix": "PROGRAM",
         "body": [
             "program ${1:name}",
-            "implicit none",
-            "",
+            "\timplicit none",
+            "\t${0}",
             "ENDPROGRAM ${1:name}"
         ],
         "description": "Program Skeleton"
@@ -13,9 +13,10 @@
         "prefix": "MODULE",
         "body": [
             "MODULE ${1:name}",
-            "implicit none",
-            "${2}",
+            "\timplicit none",
+            "\t${2}",
             "contains",
+            "\t${0}",
             "ENDMODULE ${1:name}"
         ],
         "description": "Create a new module"
@@ -25,7 +26,7 @@
         "body": [
             "DO ${1:index} = ${2:start},${3:end}",
             "    !TODO_statement",
-            "    ${4}",
+            "    \t${4}",
             "ENDDO"
         ],
         "description": "Create a do loop"
@@ -34,10 +35,10 @@
         "prefix": "FUNCTION",
         "body": [
             "FUNCTION ${1:func}(${2:arg}) RESULT(${3:retval})",
-            "${4:type} :: ${2:arg}",
-            "${4:type} :: ${3:retval}",
+            "\t${4:type} :: ${2:arg}",
+            "\t${4:type} :: ${3:retval}",
             "    !TODO_add_body",
-            "    ${5}",
+            "\t${5}",
             "ENDFUNCTION ${1:func}"
         ],
         "description": "Create a function"
@@ -78,7 +79,7 @@
         ],
         "description": "Create a IFELSE"
     },
-    "SELECTTYPE":{
+    "SELECTTYPE": {
         "prefix": "SELECTTYPE",
         "body": [
             "SELETYPE(${1:condtion}) ; TYPE IS(${2:condtion})",
@@ -101,29 +102,60 @@
             "    ${6}",
             "ENDSUBROUTINE ${1:routine}"
         ],
-        "description": "Create a function"
+        "description": "Create a subroutine"
+    },
+    "ifs": {
+        "prefix": "if",
+        "body": [
+            "if ( ${1:condition} ) ${0}"
+        ],
+        "description": "if (single line)"
+    },
+    "if": {
+        "prefix": "if",
+        "body": [
+            "if ( ${1:condition} ) then",
+            "\t${0}",
+            "end if"
+        ],
+        "description": "if then"
+    },
+    "elif": {
+        "prefix": "el",
+        "body": [
+            "else if ( ${1:condition} ) then",
+            "\t${0}"
+        ],
+        "description": "else if"
+    },
+    "imp": {
+        "prefix": "imp",
+        "body": [
+            "implicit none",
+            "${0}"
+        ],
+        "description": "implicit none"
     },
     "Module documentation header": {
-        "prefix": "modoc" ,
-        "body": [ "!------------------------------------------------------------------------------",
-                  "! ${1:Institution}, ${2:Affiliation}",
-                  "!------------------------------------------------------------------------------",
-                  "!",
-                  "! MODULE: ${3: Module name}",
-                  "!",
-                  "!> @author",
-                  "!> ${4:Author Name}}",
-                  "!",
-                  "! DESCRIPTION: ",
-                  "!> ${5: Short module description}",
-                  "!",
-                  "! REVISION HISTORY:",
-                  "! dd Mmm yyyy - Initial Version",
-                  "! TODO_dd_mmm_yyyy - TODO_describe_appropriate_changes - TODO_name",
-                  "!------------------------------------------------------------------------------"
+        "prefix": "modoc",
+        "body": [
+            "!------------------------------------------------------------------------------",
+            "! ${1:Institution}, ${2:Affiliation}",
+            "!------------------------------------------------------------------------------",
+            "!",
+            "! MODULE: ${3: Module name}",
+            "!",
+            "!> @author",
+            "!> ${4:Author Name}}",
+            "!",
+            "! DESCRIPTION: ",
+            "!> ${5: Short module description}",
+            "!",
+            "! REVISION HISTORY:",
+            "! dd Mmm yyyy - Initial Version",
+            "! TODO_dd_mmm_yyyy - TODO_describe_appropriate_changes - TODO_name",
+            "!------------------------------------------------------------------------------"
         ],
         "description": "Add module documentation header"
     }
-
-
 }
